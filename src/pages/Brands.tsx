@@ -1,0 +1,106 @@
+import React from "react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { brands } from "@/data/products";
+
+const Brands: React.FC = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 bg-background">
+        {/* Page Header */}
+        <div className="bg-secondary py-12">
+          <div className="container mx-auto px-4">
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-secondary-foreground mb-2">
+              Our Brands
+            </h1>
+            <p className="text-secondary-foreground/70">
+              Discover the world's leading cycling brands
+            </p>
+          </div>
+        </div>
+
+        {/* Brands Grid */}
+        <div className="container mx-auto px-4 py-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {brands.map((brand, index) => (
+              <div
+                key={brand}
+                className="group relative rounded-2xl bg-muted p-8 hover:shadow-lg transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <div className="flex items-center justify-center h-40 mb-6 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors">
+                  <span className="text-3xl font-bold text-primary/40 group-hover:text-primary/60 transition-colors">
+                    {brand.charAt(0)}
+                  </span>
+                </div>
+                <h3 className="font-display text-lg font-bold text-foreground mb-4">
+                  {brand}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Explore our collection of {brand} products
+                </p>
+                <Link to={`/products?brand=${brand}`}>
+                  <Button variant="outline" className="w-full group">
+                    Shop {brand}
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Featured Brands Section */}
+        <div className="bg-muted py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground text-center mb-12">
+              Why Choose Our Brands?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🏆</span>
+                </div>
+                <h3 className="font-display font-bold text-foreground mb-2">
+                  Industry Leaders
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Only the most trusted and respected brands in the cycling industry
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">✅</span>
+                </div>
+                <h3 className="font-display font-bold text-foreground mb-2">
+                  Quality Guaranteed
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  All products are authentic and backed by official warranties
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">💯</span>
+                </div>
+                <h3 className="font-display font-bold text-foreground mb-2">
+                  Best Prices
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Competitive pricing with special discounts for members
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Brands;
