@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {/* Add to Cart Overlay */}
           <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <Button
-              variant="lime"
+              variant="yellow"
               className="w-full"
               onClick={handleAddToCart}
             >

@@ -212,7 +212,7 @@ const ProductDetail: React.FC = () => {
                   </Button>
                 </div>
                 <Button
-                  variant="lime"
+                  variant="yellow"
                   size="lg"
                   className="flex-1"
                   onClick={handleAddToCart}

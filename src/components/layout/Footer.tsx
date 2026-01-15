@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
                 placeholder="Enter your email"
                 className="bg-white/10 border-white/20 text-secondary-foreground placeholder:text-secondary-foreground/50"
               />
-              <Button variant="lime" type="submit">
+              <Button variant="yellow" type="submit">
                 <Mail className="w-4 h-4 mr-2" />
                 Subscribe
               </Button>

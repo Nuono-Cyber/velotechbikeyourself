@@ -30,7 +30,7 @@ const Cart: React.FC = () => {
               Looks like you haven't added any items to your cart yet.
             </p>
             <Link to="/products">
-              <Button variant="lime" size="lg">
+              <Button variant="yellow" size="lg">
                 Start Shopping
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -189,7 +189,7 @@ const Cart: React.FC = () => {
                 </div>
 
                 {/* Checkout Button */}
-                <Button variant="lime" size="lg" className="w-full">
+                <Button variant="yellow" size="lg" className="w-full">
                   Proceed to Checkout
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

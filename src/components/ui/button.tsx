@@ -16,13 +16,12 @@ const buttonVariants = cva(
           "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-to-r from-[hsl(78,85%,50%)] to-[hsl(78,70%,40%)] text-[hsl(0,0%,8%)] font-bold shadow-lg hover:shadow-[0_0_40px_-10px_hsl(78,85%,50%,0.4)] hover:scale-105 active:scale-100",
-        heroOutline: "border-2 border-[hsl(78,85%,50%)] bg-transparent text-[hsl(78,85%,50%)] hover:bg-[hsl(78,85%,50%)] hover:text-[hsl(0,0%,8%)] font-bold",
+        hero: "bg-primary text-primary-foreground font-bold shadow-lg hover:shadow-glow hover:scale-105 active:scale-100",
+        heroOutline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-bold",
         dark: "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-md hover:shadow-lg",
-        lime: "bg-[hsl(78,85%,50%)] text-[hsl(0,0%,8%)] font-bold hover:bg-[hsl(78,70%,40%)] shadow-md hover:shadow-[0_0_40px_-10px_hsl(78,85%,50%,0.4)]",
-        green: "bg-[hsl(152,45%,22%)] text-white font-bold hover:bg-[hsl(152,40%,35%)] shadow-md hover:shadow-lg",
+        yellow: "bg-primary text-primary-foreground font-bold hover:bg-primary/90 shadow-md hover:shadow-glow",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -136,7 +136,7 @@ const Header: React.FC = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border mt-2">
-                <Button variant="lime" className="w-full">
+                <Button variant="yellow" className="w-full">
                   Sign In
                 </Button>
               </div>
