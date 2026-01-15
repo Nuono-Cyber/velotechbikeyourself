@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Globe,
 } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import {
@@ -37,15 +38,12 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-xl">
-                V
-              </span>
-            </div>
-            <span className="font-display font-bold text-xl text-foreground group-hover:text-primary transition-colors">
-              VeloTech
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src={logo}
+              alt="VeloTech"
+              className="h-12 lg:h-14 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
