@@ -89,9 +89,11 @@ const Header: React.FC = () => {
             </DropdownMenu>
 
             {/* User */}
-            <Button variant="ghost" size="icon">
-              <User className="w-5 h-5" />
-            </Button>
+            <Link to="/auth">
+              <Button variant="ghost" size="icon">
+                <User className="w-5 h-5" />
+              </Button>
+            </Link>
 
             {/* Cart */}
             <Link to="/cart">
