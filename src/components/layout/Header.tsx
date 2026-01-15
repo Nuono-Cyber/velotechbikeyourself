@@ -9,7 +9,7 @@ import {
   ChevronDown,
   Globe,
 } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import {
