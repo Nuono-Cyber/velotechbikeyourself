@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Youtube, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import logo from "@/assets/logo.jpeg";
 
 const Footer: React.FC = () => {
   const footerLinks = {
@@ -72,13 +73,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                <span className="text-accent-foreground font-display font-bold text-xl">
-                  V
-                </span>
-              </div>
-              <span className="font-display font-bold text-xl">VeloTech</span>
+            <Link to="/" className="inline-block mb-4">
+              <img
+                src={logo}
+                alt="VeloTech"
+                className="h-16 w-auto object-contain"
+              />
             </Link>
             <p className="text-secondary-foreground/70 mb-6 max-w-sm">
               Premium cycling gear for every rider. From road to mountain,
