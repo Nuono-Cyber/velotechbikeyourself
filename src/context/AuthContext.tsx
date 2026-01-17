@@ -1,16 +1,27 @@
-import React, { createContext, ReactNode, useEffect } from 'react';
+import React, { createContext, ReactNode } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { User } from '../lib/auth';
+import { User, Session } from '@supabase/supabase-js';
+
+interface Profile {
+  id: string;
+  user_id: string;
+  name: string;
+  phone: string | null;
+  address: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 interface AuthContextType {
   user: User | null;
-  token: string | null;
+  profile: Profile | null;
+  session: Session | null;
   isLoading: boolean;
   error: string | null;
   isAuthenticated: boolean;
   register: (email: string, name: string, password: string, phone?: string, address?: string) => Promise<any>;
   login: (email: string, password: string) => Promise<any>;
-  logout: () => void;
+  logout: () => Promise<void>;
   loadProfile: () => Promise<void>;
 }
 
@@ -22,12 +33,6 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const auth = useAuth();
-
-  useEffect(() => {
-    if (auth.token && !auth.user) {
-      auth.loadProfile();
-    }
-  }, [auth.token]);
 
   return (
     <AuthContext.Provider value={auth}>
