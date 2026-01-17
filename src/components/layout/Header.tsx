@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ShoppingCart,
   User,
@@ -8,21 +8,26 @@ import {
   X,
   ChevronDown,
   Globe,
+  LogOut,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { useAuthContext } from "@/context/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "pt">("en");
+  const [language, setLanguage] = useState<"en" | "pt">("pt");
   const { totalItems } = useCart();
+  const { isAuthenticated, profile, logout, isLoading } = useAuthContext();
 
   const navLinks = [
     { name: language === "en" ? "Home" : "Início", href: "/" },
@@ -32,6 +37,11 @@ const Header: React.FC = () => {
     { name: language === "en" ? "Contact" : "Contato", href: "/contact" },
     { name: language === "en" ? "Help" : "Ajuda", href: "/help" },
   ];
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -89,11 +99,39 @@ const Header: React.FC = () => {
             </DropdownMenu>
 
             {/* User */}
-            <Link to="/auth">
-              <Button variant="ghost" size="icon">
-                <User className="w-5 h-5" />
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <User className="w-5 h-5" />
+                    <span className="hidden md:inline text-sm font-medium max-w-24 truncate">
+                      {profile?.name || 'Usuário'}
+                    </span>
+                    <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-popover w-48">
+                  <div className="px-2 py-1.5 text-sm font-medium text-foreground">
+                    {profile?.name || 'Usuário'}
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    disabled={isLoading}
+                    className="text-red-600 cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    {language === "en" ? "Logout" : "Sair"}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth">
+                <Button variant="ghost" size="icon">
+                  <User className="w-5 h-5" />
+                </Button>
+              </Link>
+            )}
 
             {/* Cart */}
             <Link to="/cart">
@@ -138,9 +176,30 @@ const Header: React.FC = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border mt-2">
-                <Button variant="yellow" className="w-full">
-                  Sign In
-                </Button>
+                {isAuthenticated ? (
+                  <div className="px-4 space-y-2">
+                    <p className="text-sm font-medium text-muted-foreground">
+                      Olá, {profile?.name || 'Usuário'}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      className="w-full text-red-600 border-red-200 hover:bg-red-50"
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sair
+                    </Button>
+                  </div>
+                ) : (
+                  <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="default" className="w-full bg-orange-500 hover:bg-orange-600">
+                      {language === "en" ? "Sign In" : "Entrar"}
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </nav>
