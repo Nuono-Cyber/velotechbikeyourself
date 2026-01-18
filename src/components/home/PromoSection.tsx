@@ -2,23 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Percent, Truck, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/context/LanguageContext";
 
 const PromoSection: React.FC = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Truck,
-      title: "Free Shipping",
-      description: "On orders over €100",
+      title: t("home.promo.features.freeShipping"),
+      description: t("home.promo.features.freeShippingDesc"),
     },
     {
       icon: Shield,
-      title: "2-Year Warranty",
-      description: "On all products",
+      title: t("home.promo.features.warranty"),
+      description: t("home.promo.features.warrantyDesc"),
     },
     {
       icon: Percent,
-      title: "Member Discounts",
-      description: "Up to 20% off",
+      title: t("home.promo.features.memberDiscounts"),
+      description: t("home.promo.features.memberDiscountsDesc"),
     },
   ];
 
@@ -30,19 +33,18 @@ const PromoSection: React.FC = () => {
           <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="relative z-10 max-w-2xl">
             <span className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-semibold mb-4">
-              Limited Time Offer
+              {t("home.promo.limitedOffer")}
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-secondary-foreground mb-4">
-              Summer Sale
-              <span className="block text-accent">Up to 40% Off</span>
+              {t("home.promo.summerSale")}
+              <span className="block text-accent">{t("home.promo.upTo40Off")}</span>
             </h2>
             <p className="text-secondary-foreground/70 mb-8 max-w-lg">
-              Get ready for the season with massive discounts on selected bikes,
-              gear, and accessories. Don't miss out!
+              {t("home.promo.summerDescription")}
             </p>
             <Link to="/products">
               <Button variant="hero" size="lg">
-                Shop the Sale
+                {t("home.promo.shopTheSale")}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>

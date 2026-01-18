@@ -7,7 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import logo from "@/assets/logo.png";
 
 const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const footerLinks = {
     shop: [
       { name: t("home.categories.bikes"), href: "/products?category=bicycles" },
@@ -20,19 +20,19 @@ const Footer: React.FC = () => {
       { name: t("common.help"), href: "/help" },
       { name: t("footer.support"), href: "/shipping" },
       { name: t("footer.returns"), href: "/returns" },
-      { name: "Track Order", href: "/track-order" },
+      { name: t("footer.trackOrder"), href: "/track-order" },
       { name: t("common.contact"), href: "/contact" },
     ],
     company: [
       { name: t("footer.about"), href: "/about" },
       { name: t("common.blog"), href: "/blog" },
       { name: t("footer.careers"), href: "/careers" },
-      { name: "Press", href: "/press" },
+      { name: t("footer.press"), href: "/press" },
     ],
     legal: [
       { name: t("footer.privacy"), href: "/privacy" },
       { name: t("footer.terms"), href: "/terms" },
-      { name: "Cookie Policy", href: "/cookies" },
+      { name: t("footer.cookiePolicy"), href: "/cookies" },
     ],
   };
 
@@ -50,20 +50,20 @@ const Footer: React.FC = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="font-display text-2xl font-bold mb-2">
-              {t("header.title")} Community
+              {t("footer.newsletterTitle")}
             </h3>
             <p className="text-secondary-foreground/70 mb-6">
-              Get exclusive deals, cycling tips, and new product announcements
+              {t("footer.newsletterSubtitle")}
             </p>
             <form className="flex gap-2 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("footer.emailPlaceholder")}
                 className="bg-white/10 border-white/20 text-secondary-foreground placeholder:text-secondary-foreground/50"
               />
               <Button variant="yellow" type="submit">
                 <Mail className="w-4 h-4 mr-2" />
-                Subscribe
+                {t("common.subscribe")}
               </Button>
             </form>
           </div>
@@ -83,8 +83,7 @@ const Footer: React.FC = () => {
               />
             </Link>
             <p className="text-secondary-foreground/70 mb-6 max-w-sm">
-              Premium cycling gear for every rider. From road to mountain,
-              we've got you covered with the best equipment on the market.
+              {t("footer.brandDescription")}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -176,7 +175,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/50">
             <p>{t("footer.copyright")}</p>
             <div className="flex gap-4">
-              <span>🇧🇷 {t("footer.portuguese")}</span>
+              <span>{language === "pt-br" ? "🇧🇷" : "🇺🇸"} {language === "pt-br" ? t("footer.portuguese") : t("footer.english")}</span>
               <span>€ EUR</span>
             </div>
           </div>

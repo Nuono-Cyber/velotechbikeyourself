@@ -2,19 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { categories } from "@/data/products";
+import { useLanguage } from "@/context/LanguageContext";
 
 const CategorySection: React.FC = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Shop by Category
+            {t("home.categories.title")}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore our curated selection of premium cycling gear designed for
-            every type of rider and terrain
+            {t("home.categories.subtitle")}
           </p>
         </div>
 
@@ -45,7 +47,7 @@ const CategorySection: React.FC = () => {
                       {category.name}
                     </h3>
                     <p className="text-secondary-foreground/70 text-sm">
-                      {category.productCount} products
+                      {category.productCount} {t("home.categories.productsCount")}
                     </p>
                   </div>
                   <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
