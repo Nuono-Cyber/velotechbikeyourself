@@ -203,19 +203,33 @@ const Cart: React.FC = () => {
                   </p>
                 )}
 
-                {/* Payment Icons */}
-                <div className="flex justify-center gap-3 mt-6 pt-6 border-t border-border">
-                  <div className="w-10 h-6 bg-muted rounded flex items-center justify-center text-xs font-bold">
-                    VISA
-                  </div>
-                  <div className="w-10 h-6 bg-muted rounded flex items-center justify-center text-xs font-bold">
-                    MC
-                  </div>
-                  <div className="w-10 h-6 bg-muted rounded flex items-center justify-center text-xs font-bold">
-                    AMEX
-                  </div>
-                  <div className="w-10 h-6 bg-muted rounded flex items-center justify-center text-xs font-bold">
-                    PP
+                {/* Payment Methods */}
+                <div className="mt-6 pt-6 border-t border-border">
+                  <p className="text-sm text-muted-foreground text-center mb-3">
+                    {t("cart.paymentMethods")}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      PIX
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      MB WAY
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      MULTIBANCO
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      VISA
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      MASTERCARD
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      PAYPAL
+                    </div>
+                    <div className="px-3 py-1.5 bg-muted rounded-lg flex items-center justify-center text-xs font-bold">
+                      TRANSFERÊNCIA
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import { Facebook, Instagram, Twitter, Youtube, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/context/LanguageContext";
@@ -173,7 +173,11 @@ const Footer: React.FC = () => {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/50">
-            <p>{t("footer.copyright")}</p>
+            <div className="flex flex-col sm:flex-row items-center gap-2 text-center">
+              <p>{t("footer.copyright")}</p>
+              <span className="hidden sm:inline">|</span>
+              <p>{t("footer.developedBy")} Carlos Santos | Escola Secundária Henriques Nogueira</p>
+            </div>
             <div className="flex gap-4">
               <span>{language === "pt-br" ? "🇧🇷" : "🇺🇸"} {language === "pt-br" ? t("footer.portuguese") : t("footer.english")}</span>
               <span>€ EUR</span>
@@ -181,6 +185,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/5571912345678"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+        aria-label="WhatsApp"
+      >
+        <MessageCircle className="w-7 h-7" />
+      </a>
     </footer>
   );
 };
