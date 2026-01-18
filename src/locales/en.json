@@ -1,4 +1,10 @@
 {
+  "cart": {
+    "paymentMethods": "Accepted payment methods"
+  },
+  "footer": {
+    "developedBy": "Developed by"
+  },
   "common": {
     "home": "Home",
     "products": "Products",
