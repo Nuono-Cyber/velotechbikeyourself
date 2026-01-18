@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import ptBr from '@/locales/pt-br.json';
-import en from '@/locales/en.json';
+import ptBrTranslations from '@/locales/pt-br.json';
+import enTranslations from '@/locales/en.json';
 
 type Language = 'pt-br' | 'en';
 
@@ -12,30 +12,42 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const translations: Record<Language, any> = {
-  'pt-br': ptBr,
-  'en': en,
+const translations: Record<Language, Record<string, any>> = {
+  'pt-br': ptBrTranslations || {},
+  'en': enTranslations || {},
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    // Tentar pegar do localStorage
-    const saved = localStorage.getItem('language');
-    if (saved === 'pt-br' || saved === 'en') {
-      return saved;
-    }
-    // Tentar detectar do idioma do navegador
-    const browserLang = navigator.language;
-    if (browserLang.startsWith('pt')) {
-      return 'pt-br';
-    }
-    return 'en';
-  });
+  const [language, setLanguageState] = useState<Language>('en');
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
-    document.documentElement.lang = language;
-  }, [language]);
+    try {
+      const saved = localStorage.getItem('language');
+      if (saved === 'pt-br' || saved === 'en') {
+        setLanguageState(saved);
+      } else {
+        const browserLang = navigator.language;
+        if (browserLang.startsWith('pt')) {
+          setLanguageState('pt-br');
+        }
+      }
+    } catch {
+      // Fallback para ambientes sem localStorage
+    }
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (isInitialized) {
+      try {
+        localStorage.setItem('language', language);
+        document.documentElement.lang = language;
+      } catch {
+        // Ignore localStorage errors
+      }
+    }
+  }, [language, isInitialized]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
