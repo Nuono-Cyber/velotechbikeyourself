@@ -6,8 +6,10 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Cart: React.FC = () => {
+  const { t } = useLanguage();
   const { items, removeItem, updateQuantity, totalPrice, clearCart } = useCart();
 
   const shipping = totalPrice > 100 ? 0 : 9.99;
@@ -24,14 +26,14 @@ const Cart: React.FC = () => {
               <ShoppingBag className="w-12 h-12 text-muted-foreground" />
             </div>
             <h1 className="font-display text-2xl font-bold text-foreground mb-2">
-              Your Cart is Empty
+              {t("cart.empty")}
             </h1>
             <p className="text-muted-foreground mb-8">
-              Looks like you haven't added any items to your cart yet.
+              {t("cart.emptySubtitle")}
             </p>
             <Link to="/products">
               <Button variant="yellow" size="lg">
-                Start Shopping
+                {t("cart.startShopping")}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
@@ -48,9 +50,9 @@ const Cart: React.FC = () => {
       <main className="flex-1 bg-muted py-8">
         <div className="container mx-auto px-4">
           <h1 className="font-display text-3xl font-bold text-foreground mb-8">
-            Shopping Cart
+            {t("cart.title")}
             <span className="text-muted-foreground font-normal text-lg ml-2">
-              ({items.length} items)
+              ({items.length} {t("cart.items")})
             </span>
           </h1>
 
@@ -118,7 +120,7 @@ const Cart: React.FC = () => {
                         </div>
                         {item.quantity > 1 && (
                           <div className="text-xs text-muted-foreground">
-                            €{item.price.toFixed(2)} each
+                            €{item.price.toFixed(2)} {t("cart.each")}
                           </div>
                         )}
                       </div>
@@ -141,7 +143,7 @@ const Cart: React.FC = () => {
               <div className="flex justify-end">
                 <Button variant="ghost" onClick={clearCart}>
                   <Trash2 className="w-4 h-4 mr-2" />
-                  Clear Cart
+                  {t("cart.clearCart")}
                 </Button>
               </div>
             </div>
@@ -150,31 +152,31 @@ const Cart: React.FC = () => {
             <div className="lg:col-span-1">
               <div className="bg-background rounded-2xl p-6 border border-border sticky top-24">
                 <h2 className="font-display text-xl font-bold text-foreground mb-6">
-                  Order Summary
+                  {t("cart.orderSummary")}
                 </h2>
 
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Subtotal</span>
+                    <span className="text-muted-foreground">{t("cart.subtotal")}</span>
                     <span className="font-medium">€{totalPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Shipping</span>
+                    <span className="text-muted-foreground">{t("cart.shipping")}</span>
                     <span className="font-medium">
                       {shipping === 0 ? (
-                        <span className="text-green-600">FREE</span>
+                        <span className="text-green-600">{t("cart.free")}</span>
                       ) : (
                         `€${shipping.toFixed(2)}`
                       )}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Tax (23% VAT)</span>
+                    <span className="text-muted-foreground">{t("cart.taxVat")}</span>
                     <span className="font-medium">€{tax.toFixed(2)}</span>
                   </div>
                   <div className="border-t border-border pt-4">
                     <div className="flex justify-between">
-                      <span className="font-display font-bold text-lg">Total</span>
+                      <span className="font-display font-bold text-lg">{t("cart.total")}</span>
                       <span className="font-display font-bold text-lg">
                         €{finalTotal.toFixed(2)}
                       </span>
@@ -184,20 +186,20 @@ const Cart: React.FC = () => {
 
                 {/* Promo Code */}
                 <div className="flex gap-2 mb-6">
-                  <Input placeholder="Promo code" className="flex-1" />
-                  <Button variant="outline">Apply</Button>
+                  <Input placeholder={t("cart.promoCode")} className="flex-1" />
+                  <Button variant="outline">{t("common.apply")}</Button>
                 </div>
 
                 {/* Checkout Button */}
                 <Button variant="yellow" size="lg" className="w-full">
-                  Proceed to Checkout
+                  {t("cart.proceedToCheckout")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
 
                 {/* Free Shipping Message */}
                 {shipping > 0 && (
                   <p className="text-center text-sm text-muted-foreground mt-4">
-                    Add €{(100 - totalPrice).toFixed(2)} more for free shipping!
+                    {t("cart.addMoreForFreeShipping").replace("{amount}", (100 - totalPrice).toFixed(2))}
                   </p>
                 )}
 

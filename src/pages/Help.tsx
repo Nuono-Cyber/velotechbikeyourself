@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Search, MessageCircle, HelpCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FAQItem {
   id: string;
@@ -18,78 +19,69 @@ interface FAQItem {
 }
 
 const Help: React.FC = () => {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
 
   const faqItems: FAQItem[] = [
     {
       id: "1",
-      category: "Orders",
-      question: "How do I track my order?",
-      answer:
-        "Once your order is shipped, you'll receive a tracking number via email. You can use this number to track your package in real-time on our website or directly with the shipping carrier.",
+      category: t("help.orders"),
+      question: t("help.faqItems.trackOrder.question"),
+      answer: t("help.faqItems.trackOrder.answer"),
     },
     {
       id: "2",
-      category: "Orders",
-      question: "Do you offer international shipping?",
-      answer:
-        "Yes! We ship to most countries worldwide. Shipping costs and delivery times vary by location. You can see the shipping options during checkout.",
+      category: t("help.orders"),
+      question: t("help.faqItems.internationalShipping.question"),
+      answer: t("help.faqItems.internationalShipping.answer"),
     },
     {
       id: "3",
-      category: "Returns",
-      question: "What is your return policy?",
-      answer:
-        "We offer 30-day returns on most items in original condition. If you're not satisfied with your purchase, contact our support team within 30 days of delivery.",
+      category: t("help.returns"),
+      question: t("help.faqItems.returnPolicy.question"),
+      answer: t("help.faqItems.returnPolicy.answer"),
     },
     {
       id: "4",
-      category: "Returns",
-      question: "How long does a refund take?",
-      answer:
-        "Once we receive your returned item and verify its condition, refunds are processed within 5-7 business days. The refund will be issued to your original payment method.",
+      category: t("help.returns"),
+      question: t("help.faqItems.refundTime.question"),
+      answer: t("help.faqItems.refundTime.answer"),
     },
     {
       id: "5",
-      category: "Payment",
-      question: "What payment methods do you accept?",
-      answer:
-        "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and Apple Pay. All transactions are secured with SSL encryption.",
+      category: t("help.payment"),
+      question: t("help.faqItems.paymentMethods.question"),
+      answer: t("help.faqItems.paymentMethods.answer"),
     },
     {
       id: "6",
-      category: "Payment",
-      question: "Is my payment information secure?",
-      answer:
-        "Yes! We use industry-standard encryption and secure payment gateways. Your payment information is never stored on our servers.",
+      category: t("help.payment"),
+      question: t("help.faqItems.paymentSecurity.question"),
+      answer: t("help.faqItems.paymentSecurity.answer"),
     },
     {
       id: "7",
-      category: "Products",
-      question: "How can I find the right bike size?",
-      answer:
-        "Check our sizing guide on each bike product page. You can also contact our experts at support@velotech.com for personalized recommendations based on your height and inseam.",
+      category: t("help.products"),
+      question: t("help.faqItems.bikeSize.question"),
+      answer: t("help.faqItems.bikeSize.answer"),
     },
     {
       id: "8",
-      category: "Products",
-      question: "Do you offer assembly services?",
-      answer:
-        "Many of our bikes come pre-assembled. For those that require assembly, we offer free professional assembly at select locations, or you can arrange local assembly.",
+      category: t("help.products"),
+      question: t("help.faqItems.assemblyServices.question"),
+      answer: t("help.faqItems.assemblyServices.answer"),
     },
     {
       id: "9",
-      category: "Warranty",
-      question: "What warranty do you offer?",
-      answer:
-        "Most products come with a 2-year warranty covering defects in materials and workmanship. Check the specific product details for warranty information.",
+      category: t("help.warranty"),
+      question: t("help.faqItems.warrantyInfo.question"),
+      answer: t("help.faqItems.warrantyInfo.answer"),
     },
     {
       id: "10",
-      category: "Account",
-      question: "How do I create an account?",
-      answer:
-        "Click on 'Sign Up' in the header, enter your email and create a password. You can also sign up using your social media accounts.",
+      category: t("help.account"),
+      question: t("help.faqItems.createAccount.question"),
+      answer: t("help.faqItems.createAccount.answer"),
     },
   ];
 
@@ -109,10 +101,10 @@ const Help: React.FC = () => {
         <div className="bg-secondary py-12">
           <div className="container mx-auto px-4">
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-secondary-foreground mb-2">
-              Help Center
+              {t("help.title")}
             </h1>
             <p className="text-secondary-foreground/70">
-              Find answers to common questions about VeloTech
+              {t("help.subtitle")}
             </p>
           </div>
         </div>
@@ -124,7 +116,7 @@ const Help: React.FC = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search for help..."
+                placeholder={t("help.searchForHelp")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-lg bg-muted border border-border focus:outline-none focus:ring-2 focus:ring-primary"
@@ -139,13 +131,13 @@ const Help: React.FC = () => {
                 <MessageCircle className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-display font-bold text-foreground mb-2">
-                Live Chat
+                {t("help.liveChat")}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Chat with our support team 24/7
+                {t("help.liveChatDesc")}
               </p>
               <Button variant="outline" className="w-full">
-                Start Chat
+                {t("help.startChat")}
               </Button>
             </div>
 
@@ -154,13 +146,13 @@ const Help: React.FC = () => {
                 <HelpCircle className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-display font-bold text-foreground mb-2">
-                Email Support
+                {t("help.emailSupport")}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 support@velotech.com
               </p>
               <Button variant="outline" className="w-full">
-                Send Email
+                {t("help.sendEmail")}
               </Button>
             </div>
 
@@ -169,13 +161,13 @@ const Help: React.FC = () => {
                 <Search className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-display font-bold text-foreground mb-2">
-                Guides
+                {t("help.guides")}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Helpful articles and tutorials
+                {t("help.guidesDesc")}
               </p>
               <Button variant="outline" className="w-full">
-                Browse Guides
+                {t("help.browseGuides")}
               </Button>
             </div>
           </div>
@@ -183,7 +175,7 @@ const Help: React.FC = () => {
           {/* FAQ Section */}
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-2xl font-bold text-foreground mb-8">
-              Frequently Asked Questions
+              {t("help.faq")}
             </h2>
 
             {/* Category Tabs */}
@@ -192,7 +184,7 @@ const Help: React.FC = () => {
                 variant={searchQuery === "" ? "default" : "outline"}
                 onClick={() => setSearchQuery("")}
               >
-                All
+                {t("common.all")}
               </Button>
               {categories.map((category) => (
                 <Button
@@ -229,13 +221,13 @@ const Help: React.FC = () => {
             ) : (
               <div className="text-center py-12 rounded-lg bg-muted">
                 <p className="text-muted-foreground mb-4">
-                  No results found for "{searchQuery}"
+                  {t("help.noResultsFor")} "{searchQuery}"
                 </p>
                 <Button
                   variant="outline"
                   onClick={() => setSearchQuery("")}
                 >
-                  Clear Search
+                  {t("common.clearSearch")}
                 </Button>
               </div>
             )}
@@ -244,14 +236,14 @@ const Help: React.FC = () => {
           {/* Contact Section */}
           <div className="mt-16 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 p-8 sm:p-12 text-center border border-primary/20">
             <h2 className="font-display text-2xl font-bold text-foreground mb-4">
-              Didn't find what you're looking for?
+              {t("help.didntFind")}
             </h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our support team is here to help. Don't hesitate to reach out to us with any questions or concerns.
+              {t("help.didntFindDesc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button>Contact Support</Button>
-              <Button variant="outline">Browse Blog</Button>
+              <Button>{t("help.contactSupport")}</Button>
+              <Button variant="outline">{t("help.browseBlog")}</Button>
             </div>
           </div>
         </div>

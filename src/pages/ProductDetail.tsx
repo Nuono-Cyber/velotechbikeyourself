@@ -20,9 +20,11 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
 
 const ProductDetail: React.FC = () => {
+  const { t } = useLanguage();
   const { id } = useParams();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
@@ -37,12 +39,12 @@ const ProductDetail: React.FC = () => {
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h1 className="font-display text-2xl font-bold mb-4">
-              Product Not Found
+              {t("products.productNotFound")}
             </h1>
             <Link to="/products">
               <Button variant="outline">
                 <ChevronLeft className="w-4 h-4 mr-2" />
-                Back to Products
+                {t("products.backToProducts")}
               </Button>
             </Link>
           </div>
@@ -58,7 +60,7 @@ const ProductDetail: React.FC = () => {
 
   const handleAddToCart = () => {
     addItem(product, quantity);
-    toast.success(`${quantity}x ${product.name} added to cart!`);
+    toast.success(`${quantity}x ${product.name} ${t("notifications.addedToCart")}`);
   };
 
   const discount = product.originalPrice
@@ -77,11 +79,11 @@ const ProductDetail: React.FC = () => {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-foreground transition-colors">
-              Home
+              {t("common.home")}
             </Link>
             <span>/</span>
             <Link to="/products" className="hover:text-foreground transition-colors">
-              Products
+              {t("common.products")}
             </Link>
             <span>/</span>
             <Link
@@ -108,7 +110,7 @@ const ProductDetail: React.FC = () => {
                 />
                 {product.isNew && (
                   <span className="absolute top-4 left-4 px-3 py-1 text-xs font-bold rounded-full bg-primary text-primary-foreground">
-                    NEW
+                    {t("products.new")}
                   </span>
                 )}
                 {discount > 0 && (
@@ -163,7 +165,7 @@ const ProductDetail: React.FC = () => {
                     <span className="font-semibold ml-2">{product.rating}</span>
                   </div>
                   <span className="text-muted-foreground">
-                    ({product.reviewCount} reviews)
+                    ({product.reviewCount} {t("products.reviews")})
                   </span>
                 </div>
               </div>
@@ -180,7 +182,7 @@ const ProductDetail: React.FC = () => {
                 )}
                 {discount > 0 && (
                   <span className="px-2 py-1 text-sm font-semibold rounded bg-destructive/10 text-destructive">
-                    Save €{(product.originalPrice! - product.price).toFixed(2)}
+                    {t("products.save")} €{(product.originalPrice! - product.price).toFixed(2)}
                   </span>
                 )}
               </div>
@@ -218,7 +220,7 @@ const ProductDetail: React.FC = () => {
                   onClick={handleAddToCart}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Add to Cart
+                  {t("products.addToCart")}
                 </Button>
                 <Button variant="outline" size="lg">
                   <Heart className="w-5 h-5" />
@@ -231,22 +233,22 @@ const ProductDetail: React.FC = () => {
               {/* Stock Status */}
               <div className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-medium">In Stock - Ships within 24h</span>
+                <span className="text-sm font-medium">{t("products.shipsWithin24h")}</span>
               </div>
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
                 <div className="flex flex-col items-center text-center gap-2 p-4 rounded-xl bg-muted">
                   <Truck className="w-6 h-6 text-primary" />
-                  <span className="text-xs font-medium">Free Shipping</span>
+                  <span className="text-xs font-medium">{t("products.freeShipping")}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2 p-4 rounded-xl bg-muted">
                   <Shield className="w-6 h-6 text-primary" />
-                  <span className="text-xs font-medium">2-Year Warranty</span>
+                  <span className="text-xs font-medium">{t("products.warranty")}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2 p-4 rounded-xl bg-muted">
                   <RotateCcw className="w-6 h-6 text-primary" />
-                  <span className="text-xs font-medium">30-Day Returns</span>
+                  <span className="text-xs font-medium">{t("products.returns")}</span>
                 </div>
               </div>
             </div>
@@ -257,9 +259,9 @@ const ProductDetail: React.FC = () => {
         <section className="container mx-auto px-4 py-12">
           <Tabs defaultValue="specs" className="w-full">
             <TabsList className="w-full max-w-md mx-auto grid grid-cols-3">
-              <TabsTrigger value="specs">Specifications</TabsTrigger>
-              <TabsTrigger value="description">Description</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              <TabsTrigger value="specs">{t("products.specifications")}</TabsTrigger>
+              <TabsTrigger value="description">{t("products.description")}</TabsTrigger>
+              <TabsTrigger value="reviews">{t("products.reviews")}</TabsTrigger>
             </TabsList>
             <TabsContent value="specs" className="mt-8">
               {product.specs && (
@@ -292,10 +294,10 @@ const ProductDetail: React.FC = () => {
             <TabsContent value="reviews" className="mt-8">
               <div className="max-w-2xl mx-auto text-center py-8">
                 <p className="text-muted-foreground">
-                  No reviews yet. Be the first to review this product!
+                  {t("products.noReviewsYet")}
                 </p>
                 <Button variant="outline" className="mt-4">
-                  Write a Review
+                  {t("products.writeReview")}
                 </Button>
               </div>
             </TabsContent>
@@ -306,7 +308,7 @@ const ProductDetail: React.FC = () => {
         {relatedProducts.length > 0 && (
           <section className="container mx-auto px-4 py-12 border-t border-border">
             <h2 className="font-display text-2xl font-bold text-foreground mb-8">
-              You Might Also Like
+              {t("products.youMightAlsoLike")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((product) => (
