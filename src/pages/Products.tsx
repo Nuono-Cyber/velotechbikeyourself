@@ -23,8 +23,10 @@ import {
 } from "@/components/ui/sheet";
 import { Checkbox } from "@/components/ui/checkbox";
 import { products, categories, brands } from "@/data/products";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Products: React.FC = () => {
+  const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [priceRange, setPriceRange] = useState([0, 5000]);
@@ -120,7 +122,7 @@ const Products: React.FC = () => {
     <div className="space-y-6">
       {/* Categories */}
       <div>
-        <h3 className="font-display font-semibold mb-3">Categories</h3>
+        <h3 className="font-display font-semibold mb-3">{t("products.categories")}</h3>
         <div className="space-y-2">
           {categories.map((category) => (
             <label
@@ -144,7 +146,7 @@ const Products: React.FC = () => {
 
       {/* Price Range */}
       <div>
-        <h3 className="font-display font-semibold mb-3">Price Range</h3>
+        <h3 className="font-display font-semibold mb-3">{t("products.priceRange")}</h3>
         <Slider
           value={priceRange}
           onValueChange={setPriceRange}
@@ -175,7 +177,7 @@ const Products: React.FC = () => {
 
       {/* Brands */}
       <div>
-        <h3 className="font-display font-semibold mb-3">Brands</h3>
+        <h3 className="font-display font-semibold mb-3">{t("products.brands")}</h3>
         <div className="space-y-2">
           {brands.map((brand) => (
             <label
@@ -202,7 +204,7 @@ const Products: React.FC = () => {
           onClick={clearFilters}
         >
           <X className="w-4 h-4 mr-2" />
-          Clear All Filters
+          {t("common.clearAllFilters")}
         </Button>
       )}
     </div>
@@ -216,10 +218,10 @@ const Products: React.FC = () => {
         <div className="bg-secondary py-12">
           <div className="container mx-auto px-4">
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-secondary-foreground mb-2">
-              All Products
+              {t("products.allProducts")}
             </h1>
             <p className="text-secondary-foreground/70">
-              Discover our complete range of cycling gear
+              {t("products.pageSubtitle")}
             </p>
           </div>
         </div>
@@ -232,7 +234,7 @@ const Products: React.FC = () => {
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="font-display font-semibold flex items-center gap-2">
                     <SlidersHorizontal className="w-5 h-5" />
-                    Filters
+                    {t("products.filters")}
                   </h2>
                   {activeFiltersCount > 0 && (
                     <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-primary text-primary-foreground">
@@ -254,7 +256,7 @@ const Products: React.FC = () => {
                     <SheetTrigger asChild>
                       <Button variant="outline" className="lg:hidden">
                         <Filter className="w-4 h-4 mr-2" />
-                        Filters
+                        {t("products.filters")}
                         {activeFiltersCount > 0 && (
                           <span className="ml-2 px-1.5 py-0.5 text-xs font-medium rounded-full bg-primary text-primary-foreground">
                             {activeFiltersCount}
@@ -264,7 +266,7 @@ const Products: React.FC = () => {
                     </SheetTrigger>
                     <SheetContent side="left" className="w-80">
                       <SheetHeader>
-                        <SheetTitle>Filters</SheetTitle>
+                        <SheetTitle>{t("products.filters")}</SheetTitle>
                       </SheetHeader>
                       <div className="mt-6">
                         <FilterContent />
@@ -274,7 +276,7 @@ const Products: React.FC = () => {
 
                   {/* Search */}
                   <Input
-                    placeholder="Search products..."
+                    placeholder={t("products.searchProducts")}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-48 sm:w-64"
@@ -284,20 +286,20 @@ const Products: React.FC = () => {
                 <div className="flex items-center gap-4">
                   {/* Results Count */}
                   <span className="text-sm text-muted-foreground hidden sm:block">
-                    {filteredProducts.length} products
+                    {filteredProducts.length} {t("products.productsFound")}
                   </span>
 
                   {/* Sort */}
                   <Select value={sortBy} onValueChange={setSortBy}>
                     <SelectTrigger className="w-40">
-                      <SelectValue placeholder="Sort by" />
+                      <SelectValue placeholder={t("products.sortBy")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="featured">Featured</SelectItem>
-                      <SelectItem value="newest">Newest</SelectItem>
-                      <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                      <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                      <SelectItem value="rating">Top Rated</SelectItem>
+                      <SelectItem value="featured">{t("products.featured")}</SelectItem>
+                      <SelectItem value="newest">{t("products.newest")}</SelectItem>
+                      <SelectItem value="price-asc">{t("products.priceAscending")}</SelectItem>
+                      <SelectItem value="price-desc">{t("products.priceDescending")}</SelectItem>
+                      <SelectItem value="rating">{t("products.topRated")}</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -345,10 +347,10 @@ const Products: React.FC = () => {
               ) : (
                 <div className="text-center py-16">
                   <p className="text-lg text-muted-foreground mb-4">
-                    No products found matching your criteria
+                    {t("products.noProductsFound")}
                   </p>
                   <Button variant="outline" onClick={clearFilters}>
-                    Clear Filters
+                    {t("common.clearFilters")}
                   </Button>
                 </div>
               )}
