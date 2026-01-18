@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30 mb-6 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-sm font-medium text-accent">
-              New Collection 2026
+              {t("home.hero.badge")}
             </span>
           </div>
 
@@ -51,13 +51,13 @@ const HeroSection: React.FC = () => {
           >
             <Link to="/products">
               <Button variant="hero" size="xl">
-                Shop Now
+                {t("home.hero.shopNow")}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
             <Button variant="heroOutline" size="xl">
               <Play className="w-5 h-5" />
-              Watch Video
+              {t("home.hero.watchVideo")}
             </Button>
           </div>
 
@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
                 500+
               </div>
               <div className="text-sm text-secondary-foreground/60">
-                Premium Products
+                {t("home.hero.stats.products")}
               </div>
             </div>
             <div>
@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
                 50K+
               </div>
               <div className="text-sm text-secondary-foreground/60">
-                Happy Cyclists
+                {t("home.hero.stats.cyclists")}
               </div>
             </div>
             <div>
@@ -87,7 +87,7 @@ const HeroSection: React.FC = () => {
                 24/7
               </div>
               <div className="text-sm text-secondary-foreground/60">
-                Expert Support
+                {t("home.hero.stats.support")}
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
         <span className="text-xs text-secondary-foreground/50 uppercase tracking-wider">
-          Scroll
+          {t("common.scroll")}
         </span>
         <div className="w-6 h-10 rounded-full border-2 border-secondary-foreground/30 flex items-start justify-center p-2">
           <div className="w-1.5 h-3 rounded-full bg-accent animate-pulse" />

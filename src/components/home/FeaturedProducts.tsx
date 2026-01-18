@@ -4,8 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/product/ProductCard";
 import { products } from "@/data/products";
+import { useLanguage } from "@/context/LanguageContext";
 
 const FeaturedProducts: React.FC = () => {
+  const { t } = useLanguage();
   const featuredProducts = products.filter((p) => p.isFeatured).slice(0, 4);
 
   return (
@@ -15,15 +17,15 @@ const FeaturedProducts: React.FC = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
           <div>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-2">
-              Featured Products
+              {t("home.featured.title")}
             </h2>
             <p className="text-muted-foreground">
-              Top picks from our cycling experts
+              {t("home.featured.subtitle")}
             </p>
           </div>
           <Link to="/products">
             <Button variant="outline" className="group">
-              View All Products
+              {t("home.featured.viewAll")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>

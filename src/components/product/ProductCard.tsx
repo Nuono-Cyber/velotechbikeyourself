@@ -4,6 +4,7 @@ import { ShoppingCart, Heart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/types/product";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
 
 interface ProductCardProps {
@@ -12,12 +13,13 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addItem } = useCart();
+  const { t } = useLanguage();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem(product);
-    toast.success(`${product.name} added to cart!`);
+    toast.success(t("notifications.addedToCart"));
   };
 
   const discount = product.originalPrice
@@ -41,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute top-4 left-4 flex flex-col gap-2">
             {product.isNew && (
               <span className="px-3 py-1 text-xs font-bold rounded-full bg-primary text-primary-foreground">
-                NEW
+                {t("products.new")}
               </span>
             )}
             {discount > 0 && (
@@ -66,7 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               onClick={handleAddToCart}
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
-              Add to Cart
+              {t("products.addToCart")}
             </Button>
           </div>
         </div>

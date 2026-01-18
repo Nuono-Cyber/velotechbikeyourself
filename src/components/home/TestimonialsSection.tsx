@@ -1,48 +1,47 @@
 import React from "react";
 import { Star, Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    role: "Professional Cyclist",
-    avatar: "SJ",
-    rating: 5,
-    content:
-      "The Carbon Apex Road Bike has completely transformed my training. The handling is incredible and the weight savings are noticeable on every climb.",
-  },
-  {
-    id: 2,
-    name: "Marcus Chen",
-    role: "Weekend Warrior",
-    avatar: "MC",
-    rating: 5,
-    content:
-      "Best cycling gear I've ever purchased. The quality is outstanding and the customer service team went above and beyond to help me find the perfect fit.",
-  },
-  {
-    id: 3,
-    name: "Emma Williams",
-    role: "Triathlete",
-    avatar: "EW",
-    rating: 5,
-    content:
-      "From helmets to apparel, everything I've bought from VeloTech has exceeded my expectations. The attention to detail is what sets them apart.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const TestimonialsSection: React.FC = () => {
+  const { t } = useLanguage();
+  
+  const testimonials = [
+    {
+      id: 1,
+      name: t("home.testimonials.testimonial1.name"),
+      role: t("home.testimonials.testimonial1.role"),
+      avatar: "SJ",
+      rating: 5,
+      content: t("home.testimonials.testimonial1.content"),
+    },
+    {
+      id: 2,
+      name: t("home.testimonials.testimonial2.name"),
+      role: t("home.testimonials.testimonial2.role"),
+      avatar: "MC",
+      rating: 5,
+      content: t("home.testimonials.testimonial2.content"),
+    },
+    {
+      id: 3,
+      name: t("home.testimonials.testimonial3.name"),
+      role: t("home.testimonials.testimonial3.role"),
+      avatar: "EW",
+      rating: 5,
+      content: t("home.testimonials.testimonial3.content"),
+    },
+  ];
+
   return (
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
-            What Our Riders Say
+            {t("home.testimonials.title")}
           </h2>
           <p className="text-primary-foreground/70 max-w-2xl mx-auto">
-            Join thousands of satisfied cyclists who trust VeloTech for their
-            riding needs
+            {t("home.testimonials.subtitle")}
           </p>
         </div>
 
