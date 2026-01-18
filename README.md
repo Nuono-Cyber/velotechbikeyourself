@@ -162,7 +162,7 @@ npm i
 npm run dev
 ```
 
-O servidor estará disponível em `http://localhost:5173` com hot reload automático.
+O servidor estará disponível
 
 ---
 
