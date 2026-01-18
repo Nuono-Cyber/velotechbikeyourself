@@ -3,8 +3,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,27 +44,27 @@ const Contact: React.FC = () => {
   const contactMethods = [
     {
       icon: Phone,
-      title: "Phone",
-      details: "+351 210 123 456",
-      description: "Mon-Fri, 9am-6pm",
+      title: t("contact.phone"),
+      details: t("contact.phoneDetails"),
+      description: t("contact.phoneHours"),
     },
     {
       icon: Mail,
-      title: "Email",
-      details: "support@velotech.com",
-      description: "We'll respond within 24 hours",
+      title: t("contact.email"),
+      details: t("contact.emailDetails"),
+      description: t("contact.emailHours"),
     },
     {
       icon: MapPin,
-      title: "Address",
-      details: "Lisbon, Portugal",
-      description: "Headquarters",
+      title: t("contact.address"),
+      details: t("contact.addressDetails"),
+      description: t("contact.addressType"),
     },
     {
       icon: Clock,
-      title: "Hours",
-      details: "24/7 Support",
-      description: "Chat support available anytime",
+      title: t("contact.hours"),
+      details: t("contact.hoursDetails"),
+      description: t("contact.hoursDescription"),
     },
   ];
 
@@ -74,10 +76,10 @@ const Contact: React.FC = () => {
         <div className="bg-secondary py-12">
           <div className="container mx-auto px-4">
             <h1 className="font-display text-3xl sm:text-4xl font-bold text-secondary-foreground mb-2">
-              Contact Us
+              {t("contact.title")}
             </h1>
             <p className="text-secondary-foreground/70">
-              Have a question? We'd love to hear from you. Send us a message!
+              {t("contact.subtitle")}
             </p>
           </div>
         </div>
@@ -108,13 +110,13 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="max-w-2xl mx-auto rounded-2xl bg-muted p-8 sm:p-12">
             <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-              Send us a Message
+              {t("contact.sendMessage")}
             </h2>
 
             {submitted ? (
               <div className="rounded-lg bg-green-50 dark:bg-green-950 p-6 border border-green-200 dark:border-green-800">
                 <p className="text-green-800 dark:text-green-200 font-semibold">
-                  ✓ Thank you for your message! We'll get back to you soon.
+                  {t("contact.thankYou")}
                 </p>
               </div>
             ) : (
@@ -122,7 +124,7 @@ const Contact: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Name
+                      {t("contact.name")}
                     </label>
                     <input
                       type="text"
@@ -131,12 +133,12 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Your name"
+                      placeholder={t("common.name")}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Email
+                      {t("contact.email")}
                     </label>
                     <input
                       type="email"
@@ -145,14 +147,14 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="your@email.com"
+                      placeholder="seu@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Subject
+                    {t("contact.subject")}
                   </label>
                   <input
                     type="text"
@@ -161,13 +163,13 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Message subject"
+                    placeholder={t("contact.subject")}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Message
+                    {t("contact.message")}
                   </label>
                   <textarea
                     name="message"
@@ -176,13 +178,13 @@ const Contact: React.FC = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Your message..."
+                    placeholder={t("contact.message")}
                   />
                 </div>
 
                 <Button type="submit" className="w-full group">
                   <Send className="w-4 h-4 mr-2 group-hover:-translate-y-1 transition-transform" />
-                  Send Message
+                  {t("contact.send")}
                 </Button>
               </form>
             )}
@@ -193,13 +195,13 @@ const Contact: React.FC = () => {
         <div className="bg-muted py-12 mt-12">
           <div className="container mx-auto px-4">
             <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-              Find Us
+              {t("contact.findUs")}
             </h2>
             <div className="rounded-2xl overflow-hidden h-96 bg-background border border-border flex items-center justify-center">
               <div className="text-center">
                 <MapPin className="w-16 h-16 text-primary/30 mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Map integration coming soon
+                  {t("contact.mapComingSoon")}
                 </p>
               </div>
             </div>

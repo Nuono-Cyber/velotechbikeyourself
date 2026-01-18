@@ -14,6 +14,7 @@ import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useAuthContext } from "@/context/AuthContext";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,17 +26,17 @@ import {
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "pt">("pt");
+  const { language, setLanguage, t } = useLanguage();
   const { totalItems } = useCart();
   const { isAuthenticated, profile, logout, isLoading } = useAuthContext();
 
   const navLinks = [
-    { name: language === "en" ? "Home" : "Início", href: "/" },
-    { name: language === "en" ? "Products" : "Produtos", href: "/products" },
-    { name: language === "en" ? "Brands" : "Marcas", href: "/brands" },
-    { name: "Blog", href: "/blog" },
-    { name: language === "en" ? "Contact" : "Contato", href: "/contact" },
-    { name: language === "en" ? "Help" : "Ajuda", href: "/help" },
+    { name: t("common.home"), href: "/" },
+    { name: t("common.products"), href: "/products" },
+    { name: t("common.brands"), href: "/brands" },
+    { name: t("common.blog"), href: "/blog" },
+    { name: t("common.contact"), href: "/contact" },
+    { name: t("common.help"), href: "/help" },
   ];
 
   const handleLogout = async () => {
@@ -92,7 +93,7 @@ const Header: React.FC = () => {
                 <DropdownMenuItem onClick={() => setLanguage("en")}>
                   🇺🇸 English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("pt")}>
+                <DropdownMenuItem onClick={() => setLanguage("pt-br")}>
                   🇧🇷 Português
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -112,7 +113,7 @@ const Header: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-popover w-48">
                   <div className="px-2 py-1.5 text-sm font-medium text-foreground">
-                    {profile?.name || 'Usuário'}
+                    {profile?.name || t("common.name")}
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 
@@ -121,7 +122,7 @@ const Header: React.FC = () => {
                     className="text-red-600 cursor-pointer"
                   >
                     <LogOut className="w-4 h-4 mr-2" />
-                    {language === "en" ? "Logout" : "Sair"}
+                    {t("common.logout")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -179,7 +180,7 @@ const Header: React.FC = () => {
                 {isAuthenticated ? (
                   <div className="px-4 space-y-2">
                     <p className="text-sm font-medium text-muted-foreground">
-                      Olá, {profile?.name || 'Usuário'}
+                      {t("auth.welcome", "Olá")}, {profile?.name || t("common.name")}
                     </p>
                     <Button 
                       variant="outline" 
@@ -190,13 +191,13 @@ const Header: React.FC = () => {
                       }}
                     >
                       <LogOut className="w-4 h-4 mr-2" />
-                      Sair
+                      {t("common.logout")}
                     </Button>
                   </div>
                 ) : (
                   <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
                     <Button variant="default" className="w-full bg-orange-500 hover:bg-orange-600">
-                      {language === "en" ? "Sign In" : "Entrar"}
+                      {t("common.signIn")}
                     </Button>
                   </Link>
                 )}

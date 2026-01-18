@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/context/LanguageContext";
 import heroImage from "@/assets/hero-cycling.jpg";
 
 const HeroSection: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image */}
@@ -30,8 +32,8 @@ const HeroSection: React.FC = () => {
 
           {/* Headline */}
           <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-secondary-foreground leading-tight mb-6 animate-slide-up">
-            Ride Beyond
-            <span className="block text-accent">Your Limits</span>
+            {t("home.hero.title")}
+            <span className="block text-accent">{t("home.hero.cta")}</span>
           </h1>
 
           {/* Description */}
@@ -39,9 +41,7 @@ const HeroSection: React.FC = () => {
             className="text-lg text-secondary-foreground/80 mb-8 max-w-lg animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Premium cycling gear engineered for performance. From professional
-            racing to weekend adventures, find everything you need to conquer
-            any road.
+            {t("home.hero.subtitle")}
           </p>
 
           {/* CTAs */}

@@ -3,33 +3,35 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Youtube, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/context/LanguageContext";
 import logo from "@/assets/logo.png";
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   const footerLinks = {
     shop: [
-      { name: "Bicycles", href: "/products?category=bicycles" },
-      { name: "Helmets", href: "/products?category=helmets" },
-      { name: "Apparel", href: "/products?category=apparel" },
-      { name: "Accessories", href: "/products?category=accessories" },
-      { name: "Parts", href: "/products?category=parts" },
+      { name: t("home.categories.bikes"), href: "/products?category=bicycles" },
+      { name: t("home.categories.helmets"), href: "/products?category=helmets" },
+      { name: t("home.categories.clothing"), href: "/products?category=apparel" },
+      { name: t("home.categories.accessories"), href: "/products?category=accessories" },
+      { name: t("home.categories.parts"), href: "/products?category=parts" },
     ],
     support: [
-      { name: "Help Center", href: "/help" },
-      { name: "Shipping Info", href: "/shipping" },
-      { name: "Returns", href: "/returns" },
+      { name: t("common.help"), href: "/help" },
+      { name: t("footer.support"), href: "/shipping" },
+      { name: t("footer.returns"), href: "/returns" },
       { name: "Track Order", href: "/track-order" },
-      { name: "Contact Us", href: "/contact" },
+      { name: t("common.contact"), href: "/contact" },
     ],
     company: [
-      { name: "About Us", href: "/about" },
-      { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
+      { name: t("footer.about"), href: "/about" },
+      { name: t("common.blog"), href: "/blog" },
+      { name: t("footer.careers"), href: "/careers" },
       { name: "Press", href: "/press" },
     ],
     legal: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
+      { name: t("footer.privacy"), href: "/privacy" },
+      { name: t("footer.terms"), href: "/terms" },
       { name: "Cookie Policy", href: "/cookies" },
     ],
   };
@@ -48,7 +50,7 @@ const Footer: React.FC = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="font-display text-2xl font-bold mb-2">
-              Join the VeloTech Community
+              {t("header.title")} Community
             </h3>
             <p className="text-secondary-foreground/70 mb-6">
               Get exclusive deals, cycling tips, and new product announcements
@@ -100,7 +102,7 @@ const Footer: React.FC = () => {
 
           {/* Shop */}
           <div>
-            <h4 className="font-display font-semibold mb-4">Shop</h4>
+            <h4 className="font-display font-semibold mb-4">{t("common.products")}</h4>
             <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
@@ -117,7 +119,7 @@ const Footer: React.FC = () => {
 
           {/* Support */}
           <div>
-            <h4 className="font-display font-semibold mb-4">Support</h4>
+            <h4 className="font-display font-semibold mb-4">{t("footer.support")}</h4>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
@@ -134,7 +136,7 @@ const Footer: React.FC = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-display font-semibold mb-4">Company</h4>
+            <h4 className="font-display font-semibold mb-4">{t("footer.company")}</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -151,7 +153,7 @@ const Footer: React.FC = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="font-display font-semibold mb-4">Legal</h4>
+            <h4 className="font-display font-semibold mb-4">{t("footer.legal")}</h4>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
@@ -172,9 +174,9 @@ const Footer: React.FC = () => {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/50">
-            <p>© 2026 VeloTech. All rights reserved.</p>
+            <p>{t("footer.copyright")}</p>
             <div className="flex gap-4">
-              <span>🇺🇸 English</span>
+              <span>🇧🇷 {t("footer.portuguese")}</span>
               <span>€ EUR</span>
             </div>
           </div>
