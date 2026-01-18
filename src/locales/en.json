@@ -1,10 +1,4 @@
 {
-  "cart": {
-    "paymentMethods": "Accepted payment methods"
-  },
-  "footer": {
-    "developedBy": "Developed by"
-  },
   "common": {
     "home": "Home",
     "products": "Products",
@@ -57,6 +51,7 @@
     "viewProfile": "View Profile"
   },
   "footer": {
+    "developedBy": "Developed by",
     "copyright": "© 2026 VeloTech. All rights reserved.",
     "language": "Language",
     "portuguese": "Português",
@@ -195,6 +190,7 @@
     "noReviewsYet": "No reviews yet. Be the first to review this product!"
   },
   "cart": {
+    "paymentMethods": "Accepted payment methods",
     "title": "Shopping Cart",
     "empty": "Your cart is empty",
     "emptySubtitle": "Looks like you haven't added any items to your cart yet.",
