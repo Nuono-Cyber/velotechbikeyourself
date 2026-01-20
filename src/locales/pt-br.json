@@ -398,5 +398,19 @@
     "profileUpdateError": "Erro ao atualizar perfil",
     "copyToClipboard": "Copiar para Área de Transferência",
     "copiedToClipboard": "Copiado para Área de Transferência!"
+  },
+  "orders": {
+    "title": "Histórico de Pedidos",
+    "empty": "Nenhum pedido encontrado",
+    "emptySubtitle": "Você ainda não realizou nenhuma compra.",
+    "loginRequired": "Login Necessário",
+    "loginRequiredSubtitle": "Faça login para ver seu histórico de pedidos.",
+    "orderId": "Pedido",
+    "quantity": "Qtd",
+    "totalItems": "Total de itens",
+    "statusCompleted": "Concluído",
+    "statusPending": "Pendente",
+    "statusCancelled": "Cancelado",
+    "statusProcessing": "Processando"
   }
 }

@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Globe,
   LogOut,
+  Package,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
@@ -116,6 +117,13 @@ const Header: React.FC = () => {
                     {profile?.name || t("common.name")}
                   </div>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/orders" className="cursor-pointer">
+                      <Package className="w-4 h-4 mr-2" />
+                      {t("orders.title")}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem 
                     onClick={handleLogout}
                     disabled={isLoading}
@@ -182,6 +190,14 @@ const Header: React.FC = () => {
                     <p className="text-sm font-medium text-muted-foreground">
                       {t("auth.welcome", "Olá")}, {profile?.name || t("common.name")}
                     </p>
+                    <Link 
+                      to="/orders" 
+                      className="block text-sm text-primary mb-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Package className="w-4 h-4 inline mr-2" />
+                      {t("orders.title")}
+                    </Link>
                     <Button 
                       variant="outline" 
                       className="w-full text-red-600 border-red-200 hover:bg-red-50"

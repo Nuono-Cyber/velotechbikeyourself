@@ -398,5 +398,19 @@
     "profileUpdateError": "Error updating profile",
     "copyToClipboard": "Copy to Clipboard",
     "copiedToClipboard": "Copied to Clipboard!"
+  },
+  "orders": {
+    "title": "Order History",
+    "empty": "No orders found",
+    "emptySubtitle": "You haven't made any purchases yet.",
+    "loginRequired": "Login Required",
+    "loginRequiredSubtitle": "Please log in to view your order history.",
+    "orderId": "Order",
+    "quantity": "Qty",
+    "totalItems": "Total items",
+    "statusCompleted": "Completed",
+    "statusPending": "Pending",
+    "statusCancelled": "Cancelled",
+    "statusProcessing": "Processing"
   }
 }
