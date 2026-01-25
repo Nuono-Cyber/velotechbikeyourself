@@ -11,7 +11,7 @@ import {
   LogOut,
   Package,
 } from "lucide-react";
-import logo from "@/assets/logo.png";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useAuthContext } from "@/context/AuthContext";
@@ -49,13 +49,9 @@ const Header: React.FC = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* Logo - Removed */}
           <Link to="/" className="flex items-center group">
-            <img
-              src={logo}
-              alt="VeloTech"
-              className="h-12 lg:h-14 w-auto object-contain"
-            />
+            <span className="text-2xl font-bold text-primary">VeloTech</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -78,6 +74,9 @@ const Header: React.FC = () => {
             <Button variant="ghost" size="icon" className="hidden sm:flex">
               <Search className="w-5 h-5" />
             </Button>
+
+            {/* Theme Switcher */}
+            <ThemeSwitcher />
 
             {/* Language Switcher */}
             <DropdownMenu>

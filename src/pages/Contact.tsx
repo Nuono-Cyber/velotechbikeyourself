@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Contact: React.FC = () => {
@@ -47,24 +47,27 @@ const Contact: React.FC = () => {
       title: t("contact.phone"),
       details: t("contact.phoneDetails"),
       description: t("contact.phoneHours"),
+      link: "tel:+351210123456",
     },
     {
       icon: Mail,
       title: t("contact.email"),
       details: t("contact.emailDetails"),
       description: t("contact.emailHours"),
+      link: "mailto:c.eduardoteixeiraguinsber@gmail.com",
+    },
+    {
+      icon: MessageCircle,
+      title: t("contact.whatsapp"),
+      details: t("contact.whatsappDetails"),
+      description: t("contact.whatsappHours"),
+      link: "https://wa.me/351966601839",
     },
     {
       icon: MapPin,
       title: t("contact.address"),
       details: t("contact.addressDetails"),
       description: t("contact.addressType"),
-    },
-    {
-      icon: Clock,
-      title: t("contact.hours"),
-      details: t("contact.hoursDetails"),
-      description: t("contact.hoursDescription"),
     },
   ];
 
@@ -86,11 +89,14 @@ const Contact: React.FC = () => {
 
         {/* Contact Methods */}
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {contactMethods.map((method, index) => (
-              <div
+              <a
                 key={method.title}
-                className="rounded-2xl bg-muted p-6 hover:shadow-lg transition-all duration-300 animate-fade-in"
+                href={method.link}
+                target={method.link && method.link.startsWith("http") ? "_blank" : undefined}
+                rel={method.link && method.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="rounded-2xl bg-muted p-6 hover:shadow-lg hover:bg-muted/80 transition-all duration-300 animate-fade-in cursor-pointer"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
@@ -103,7 +109,7 @@ const Contact: React.FC = () => {
                   {method.details}
                 </p>
                 <p className="text-sm text-muted-foreground">{method.description}</p>
-              </div>
+              </a>
             ))}
           </div>
 

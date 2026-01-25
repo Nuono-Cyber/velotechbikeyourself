@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { brands } from "@/data/products";
+import { brandsData } from "@/data/brands";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Brands: React.FC = () => {
@@ -29,26 +29,31 @@ const Brands: React.FC = () => {
         {/* Brands Grid */}
         <div className="container mx-auto px-4 py-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {brands.map((brand, index) => (
+            {brandsData.map((brand, index) => (
               <div
-                key={brand}
-                className="group relative rounded-2xl bg-muted p-8 hover:shadow-lg transition-all duration-300 animate-fade-in"
+                key={brand.id}
+                className="group relative rounded-2xl bg-muted p-8 hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div className="flex items-center justify-center h-40 mb-6 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors">
-                  <span className="text-3xl font-bold text-primary/40 group-hover:text-primary/60 transition-colors">
-                    {brand.charAt(0)}
-                  </span>
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="max-h-32 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
                 </div>
                 <h3 className="font-display text-lg font-bold text-foreground mb-4">
-                  {brand}
+                  {brand.name}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  {t("brands.exploreCollection")} {brand}
+                  {brand.description}
                 </p>
-                <Link to={`/products?brand=${brand}`}>
+                <Link to={`/products?brand=${brand.name}`}>
                   <Button variant="outline" className="w-full group">
-                    {t("brands.shop")} {brand}
+                    {t("brands.shop")} {brand.name}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>

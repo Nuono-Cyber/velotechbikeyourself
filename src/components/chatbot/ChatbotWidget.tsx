@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/context/LanguageContext";
+import { contactInfo } from "@/config/contact";
 
 interface Message {
   id: string;
@@ -39,7 +40,12 @@ const ChatbotWidget: React.FC = () => {
         {
           id: "welcome",
           role: "assistant",
-          content: "Olá! 👋 Sou o assistente virtual da VeloTech. Como posso ajudá-lo hoje? Posso responder perguntas sobre nossos produtos, dar dicas de ciclismo ou ajudar a encontrar o equipamento perfeito para você! 🚴‍♂️",
+          content: `Olá! 👋 Sou o assistente virtual da VeloTech. Como posso ajudá-lo hoje? Posso responder perguntas sobre nossos produtos, dar dicas de ciclismo ou ajudar a encontrar o equipamento perfeito para você! 🚴‍♂️
+
+📞 **Contato Direto:**
+• WhatsApp: ${contactInfo.whatsapp.display}
+• Email: ${contactInfo.email.address}
+• Telefone: ${contactInfo.phone.number}`,
           timestamp: new Date(),
         },
       ]);
